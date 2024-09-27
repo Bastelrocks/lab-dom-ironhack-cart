@@ -56,42 +56,58 @@ function removeProduct(event) {
 
 function createProduct() {
   //... your code goes here
-  console.log("create Button has been clicked")
-  let parentNode=document.querySelector('tbody')
-  let newProduct=document.createElement('tr')
-  newProduct.classList.add("product");
-  parentNode.appendChild(newProduct);
-  let name=document.createElement('td')
-  name.classList.add("name")
-  let newProductName=document.getElementById('newName')
-  console.log(newProductName.value)
-  name.innerHTML=newProductName.value;
-  newProduct.appendChild(name)
-  let price=document.createElement('td')
-  price.classList.add("price")
-  let newPrice=document.getElementById('newPrice')
-  price.innerHTML="$"+newPrice.value
-  newProduct.appendChild(price)
-  let quantity=document.createElement('td')
-  quantity.classList.add("quantity")
-  let input=document.createElement('input')
-  input.setAttribute("type","number")
-  input.setAttribute("value","0")
-  input.setAttribute("min","0")
-  input.setAttribute("placeholder","Quantity")
-  quantity.appendChild(input)
-  newProduct.appendChild(quantity)
-  let subtotal=document.createElement('td')
-  subtotal.classList.add("subtotal")
-  newProduct.appendChild(subtotal)
-  let action=document.createElement('td')
-  action.classList.add("action")
-  let button=document.createElement('button')
-  button.classList.add("btn")
-  button.classList.add("btn-remove")
-  button.innerHTML="Remove"
-  action.appendChild(button)
-  newProduct.appendChild(action)
+  // console.log("create Button has been clicked")
+  // let parentNode=document.querySelector('tbody')
+  // let newProduct=document.createElement('tr')
+  // newProduct.classList.add("product");
+  // parentNode.appendChild(newProduct);
+  // let name=document.createElement('td')
+  // name.classList.add("name")
+  // let newProductName=document.getElementById('newName')
+  // console.log(newProductName.value)
+  // name.innerHTML=newProductName.value;
+  // newProduct.appendChild(name)
+  // let price=document.createElement('td')
+  // price.classList.add("price")
+  // let newPrice=document.getElementById('newPrice')
+  // price.innerHTML="$"+newPrice.value
+  // newProduct.appendChild(price)
+  // let quantity=document.createElement('td')
+  // quantity.classList.add("quantity")
+  // let input=document.createElement('input')
+  // input.setAttribute("type","number")
+  // input.setAttribute("value","0")
+  // input.setAttribute("min","0")
+  // input.setAttribute("placeholder","Quantity")
+  // quantity.appendChild(input)
+  // newProduct.appendChild(quantity)
+  // let subtotal=document.createElement('td')
+  // subtotal.classList.add("subtotal")
+  // newProduct.appendChild(subtotal)
+  // let action=document.createElement('td')
+  // action.classList.add("action")
+  // let button=document.createElement('button')
+  // button.classList.add("btn")
+  // button.classList.add("btn-remove")
+  // button.innerHTML="Remove"
+  // action.appendChild(button)
+  // newProduct.appendChild(action)
+  const name = document.getElementById('newName').value;
+  const price = parseFloat(document.getElementById('newPrice').value).toFixed(2);
+  const tbody = document.querySelector('tbody');
+  const newProductHTML = `<tr class='product'>
+      <td class='name'><span>${name}</span></td>
+      <td class='price'>$<span>${price}</span></td>
+      <td class='quantity'><input type='number' value='0' min='0' placeholder='Quantity' /></td>
+      <td class='subtotal'>$<span>0</span></td>
+      <td class='action'><button class='btn btn-remove'>Remove</button></td>
+    </tr>`;
+  tbody.insertAdjacentHTML('beforeend', newProductHTML);
+  document.querySelectorAll('.btn-remove').forEach(btn => btn.removeEventListener('click', removeProduct));
+  document.querySelectorAll('.btn-remove').forEach(btn => btn.addEventListener('click', removeProduct));
+  document.getElementById('newName').value=""
+  document.getElementById('newPrice').value="0"
+
 
 
 
